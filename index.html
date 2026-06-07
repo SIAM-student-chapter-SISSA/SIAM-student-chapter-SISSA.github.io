@@ -1,21 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="style.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SIAM Student Chapter</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
 
-  <header>
-    <img src="assets/images/logo.png" alt="SIAM Student Chapter logo" width="160">
-    <h1>SIAM Student Chapter</h1>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo-area">
+        <img src="assets/images/logo.png" alt="SIAM Student Chapter logo" />
+        <span>SIAM Student Chapter</span>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="#conferences">Conferences</a>
+        <a href="#seminars">Seminars and Activities</a>
+        <a href="#courses">Courses</a>
+        <a href="#committee">Committee</a>
+        <a href="#membership">Membership</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <p>Welcome to the official website of our SIAM Student Chapter.</p>
+    <section class="hero">
+      <div class="hero-overlay">
+        <h1>SIAM STUDENT CHAPTER</h1>
+        <h2>YOUR UNIVERSITY NAME</h2>
+      </div>
+    </section>
+
+    <section class="intro section">
+      <img src="assets/images/logo.png" alt="SIAM Student Chapter logo" class="main-logo" />
+
+      <p class="welcome">
+        Welcome to the <strong>SIAM Student Chapter</strong> of
+        <strong>Your Department / Your University</strong>!
+      </p>
+
+      <h3>What is a SIAM Student Chapter?</h3>
+      <p>
+        A SIAM Student Chapter is a student organization affiliated with the
+        Society for Industrial and Applied Mathematics, with the aim of promoting
+        applied mathematics, computational science, and collaboration among
+        students, researchers, and faculty members.
+      </p>
+
+      <p>
+        Our Chapter organizes seminars, courses, meetings, networking activities,
+        and scientific events for students interested in applied mathematics,
+        data science, numerical analysis, modeling, and related fields.
+      </p>
+    </section>
+
+    <section id="membership" class="section two-column">
+      <div>
+        <h3>Become a member!</h3>
+        <p>
+          If you are a student at <strong>Your University</strong>, you can join
+          our SIAM Student Chapter. Membership is free and gives you the
+          opportunity to participate in our activities, propose events, and
+          connect with other students and researchers.
+        </p>
+        <a class="button" href="https://forms.gle/" target="_blank">Join us</a>
+      </div>
+
+      <div class="info-card">
+        <h4>Why join?</h4>
+        <ul>
+          <li>Attend seminars and workshops</li>
+          <li>Meet students and researchers</li>
+          <li>Propose scientific activities</li>
+          <li>Discover opportunities in applied mathematics</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section initiatives">
+      <h3>Have a look at our initiatives!</h3>
+
+      <div class="cards">
+        <a href="#conferences" class="card">
+          <h4>Conferences</h4>
+          <p>Scientific meetings, invited speakers, and student events.</p>
+        </a>
+
+        <a href="#seminars" class="card">
+          <h4>Seminars / Activities</h4>
+          <p>Talks, informal discussions, and research-oriented activities.</p>
+        </a>
+
+        <a href="#courses" class="card">
+          <h4>Courses</h4>
+          <p>Mini-courses and training sessions for students.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="section events">
+      <h3>Upcoming Events</h3>
+
+      <article class="event-card">
+        <div class="event-date">
+          <span class="day">23</span>
+          <span class="month">APR</span>
+        </div>
+
+        <div class="event-content">
+          <h4>Seminar Title</h4>
+          <p class="event-meta">Thursday 23/04, 11:00–12:00, Room Name</p>
+          <p><strong>Speaker Name</strong></p>
+          <p>
+            Short description of the event. Add here the abstract of the talk,
+            the main topic, and any useful information for participants.
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <section id="conferences" class="section">
+      <h3>Conferences</h3>
+      <p>
+        Information about conferences organized or promoted by the Chapter will
+        appear here.
+      </p>
+    </section>
+
+    <section id="seminars" class="section">
+      <h3>Seminars and Activities</h3>
+      <p>
+        Here you can list seminars, reading groups, student meetings, and other
+        scientific activities.
+      </p>
+    </section>
+
+    <section id="courses" class="section">
+      <h3>Courses</h3>
+      <p>
+        Here you can list short courses, workshops, and training activities.
+      </p>
+    </section>
+
+    <section id="committee" class="section">
+      <h3>Committee</h3>
+
+      <div class="people-grid">
+        <div class="person">
+          <h4>Name Surname</h4>
+          <p>President</p>
+        </div>
+
+        <div class="person">
+          <h4>Name Surname</h4>
+          <p>Vice President</p>
+        </div>
+
+        <div class="person">
+          <h4>Name Surname</h4>
+          <p>Treasurer / Secretary</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact">
+      <h3>Get in touch with us!</h3>
+
+      <p>
+        Do you have an idea for a seminar, course, or discussion? We encourage
+        your participation. Contact us by email or submit your proposal through
+        our form.
+      </p>
+
+      <p>
+        <strong>Email:</strong>
+        <a href="mailto:your.chapter@email.com">your.chapter@email.com</a>
+      </p>
+
+      <p>
+        <strong>Location:</strong>
+        Your Department, Your University, Your City
+      </p>
+
+      <a class="button" href="https://forms.gle/" target="_blank">
+        Submit a proposal
+      </a>
+    </section>
   </main>
 
+  <footer>
+    <p>© 2026 SIAM Student Chapter — Your University Name</p>
+  </footer>
 </body>
 </html>
