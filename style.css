@@ -1,0 +1,23 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  color: #222;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 48px;
+  border-bottom: 1px solid #ddd;
+}
+
+header img {
+  height: 70px;
+  width: auto;
+}
+
+main {
+  padding: 48px;
+  max-width: 900px;
+}
