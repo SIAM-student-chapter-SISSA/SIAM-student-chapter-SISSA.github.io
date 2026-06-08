@@ -184,32 +184,25 @@ h4 {
 }
 
 .page-link-card {
-  aspect-ratio: 1;
   border: 1px solid #e4e4e4;
   border-radius: 10px;
   background: #fff;
-  color: #222;
+  color: #003b73;
   text-decoration: none;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding: 32px;
+  min-height: 150px;
+  padding: 28px;
+  font-size: 1.8rem;
+  font-weight: 700;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .page-link-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
-
-.page-link-card h4 {
-  font-size: 1.6rem;
-  margin-bottom: 12px;
-}
-
-.page-link-card p {
-  margin: 0;
 }
 
 .cards {
