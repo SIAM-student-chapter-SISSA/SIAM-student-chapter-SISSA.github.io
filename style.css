@@ -192,7 +192,7 @@ h4 {
   place-items: center;
   min-height: 72px;
   padding: 14px 28px;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
