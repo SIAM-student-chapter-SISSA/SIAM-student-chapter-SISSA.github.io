@@ -339,6 +339,27 @@ h4 {
   padding: 24px;
 }
 
+.past-committee-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 84px;
+  margin-top: 24px;
+  padding: 20px 28px;
+  border-radius: 10px;
+  background: #005eb8;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.past-committee-card:hover {
+  background: #003b73;
+  transform: translateY(-2px);
+}
+
 .contact {
   border-top: 1px solid #e5e5e5;
 }
