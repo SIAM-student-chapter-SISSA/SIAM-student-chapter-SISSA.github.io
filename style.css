@@ -339,6 +339,15 @@ h4 {
   padding: 24px;
 }
 
+.person h4 {
+  margin: 0;
+  line-height: 1.2;
+}
+
+.person p {
+  margin-bottom: 0;
+}
+
 .past-committee-card {
   display: flex;
   align-items: center;
@@ -351,7 +360,7 @@ h4 {
 
 .past-committee-card h4 {
   margin: 0;
-  color: white;
+  color: white !important;
 }
 
 .past-committee-card:hover {
