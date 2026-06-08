@@ -56,6 +56,11 @@ body {
 
 .logo-text:hover {
   color: #005eb8;
+  text-decoration: none;
+}
+
+.logo-text:focus {
+  text-decoration: none;
 }
 
 .nav {
