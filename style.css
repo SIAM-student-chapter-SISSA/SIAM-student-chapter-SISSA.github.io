@@ -202,17 +202,11 @@ h4 {
 
 .event-card {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+  grid-template-columns: 110px minmax(0, 1fr) minmax(260px, 340px);
   gap: 26px;
   padding: 28px;
   margin-top: 24px;
   background: white;
-}
-
-.event-announcement {
-  display: grid;
-  grid-template-columns: 110px minmax(0, 1fr);
-  gap: 26px;
 }
 
 .event-date {
@@ -244,9 +238,8 @@ h4 {
 }
 
 .event-flyer {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: block;
+  cursor: pointer;
 }
 
 .event-flyer object {
@@ -256,17 +249,7 @@ h4 {
   border: 1px solid #e4e4e4;
   border-radius: 10px;
   background: #f7f9fc;
-}
-
-.event-flyer-link {
-  color: #005eb8;
-  font-weight: 700;
-  text-align: center;
-  text-decoration: none;
-}
-
-.event-flyer-link:hover {
-  text-decoration: underline;
+  pointer-events: none;
 }
 
 .people-grid {
@@ -309,10 +292,6 @@ footer {
   .cards,
   .people-grid,
   .event-card {
-    grid-template-columns: 1fr;
-  }
-
-  .event-announcement {
     grid-template-columns: 1fr;
   }
 
