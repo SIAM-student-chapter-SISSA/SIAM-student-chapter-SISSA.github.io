@@ -235,10 +235,21 @@ h4 {
 
 .events > h3,
 .events > .event-card,
+.events > .upcoming-list,
 .events > .page-links {
   max-width: 1050px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.upcoming-list .event-card:first-child {
+  margin-top: 24px;
+}
+
+.empty-state {
+  margin: 24px 0 0;
+  color: #666;
+  font-weight: 600;
 }
 
 .event-card {
@@ -250,6 +261,14 @@ h4 {
   margin-top: 24px;
   background: white;
   overflow: hidden;
+}
+
+.event-card.no-flyer {
+  grid-template-columns: 110px minmax(0, 1fr);
+}
+
+.event-card.no-flyer .event-content {
+  border-right: 0;
 }
 
 .event-date {
@@ -279,6 +298,15 @@ h4 {
 .event-meta {
   color: #666;
   font-weight: 600;
+}
+
+.event-online {
+  margin-top: -8px;
+  font-weight: 700;
+}
+
+.event-online a {
+  color: #005eb8;
 }
 
 .event-content {
