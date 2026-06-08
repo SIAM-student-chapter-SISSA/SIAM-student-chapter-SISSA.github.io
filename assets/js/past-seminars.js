@@ -1,15 +1,16 @@
+// past-seminars.js
+// ----------------
+// Manually maintained past seminars (most recent first).
+//
+// {
+//   day:        "DD",
+//   month:      "Mon",
+//   year:       "YYYY",
+//   title:      "Seminar title",
+//   speaker:    "First Last",
+//   university: "University name",
+//   website:    { href: "https://...", label: "Link label" },  // optional
+// }
+
 window.PAST_SEMINARS = [
-  // Same object shape as UPCOMING_SEMINARS.
-  // Add manually-organised past seminars here (most recent first).
-  //
-  // {
-  //   day: "DD",
-  //   month: "MON",
-  //   title: "Seminar title",
-  //   meta: "Day DD/MM, HH:MM-HH:MM, room",
-  //   paragraphs: [
-  //     "Short seminar description.",
-  //     "Speaker and additional details."
-  //   ]
-  // }
 ];

@@ -18,11 +18,18 @@
     date.className = "event-date";
     date.appendChild(createTextElement("span", item.day || "", "day"));
     date.appendChild(createTextElement("span", item.month || "", "month"));
+    if (item.year) {
+      date.appendChild(createTextElement("span", item.year, "year"));
+    }
     article.appendChild(date);
 
     var content = document.createElement("div");
     content.className = "event-content";
     content.appendChild(createTextElement("h4", item.title || ""));
+
+    if (item.speaker) {
+      content.appendChild(createTextElement("p", item.speaker, "event-meta"));
+    }
 
     if (item.meta) {
       content.appendChild(createTextElement("p", item.meta, "event-meta"));
@@ -109,6 +116,46 @@
     return article;
   }
 
+  function createPastSeminarItem(item) {
+    var li = document.createElement("li");
+
+    // Title — bold, clickable if website available
+    var titleEl = document.createElement("strong");
+    if (item.website && item.website.href) {
+      var a = document.createElement("a");
+      a.href = item.website.href;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = item.title || "";
+      titleEl.appendChild(a);
+    } else {
+      titleEl.textContent = item.title || "";
+    }
+    li.appendChild(titleEl);
+
+    // Speaker — bold
+    if (item.speaker) {
+      li.appendChild(document.createTextNode(", "));
+      var speakerEl = document.createElement("strong");
+      speakerEl.textContent = item.speaker;
+      li.appendChild(speakerEl);
+    }
+
+    // University
+    if (item.university) {
+      li.appendChild(document.createTextNode(", " + item.university));
+    }
+
+    // Date
+    if (item.day && item.month) {
+      var dateStr = item.day + " " + item.month;
+      if (item.year) { dateStr += " " + item.year; }
+      li.appendChild(document.createTextNode(", " + dateStr));
+    }
+
+    return li;
+  }
+
   function renderUpcoming(container) {
     var source = container.getAttribute("data-upcoming");
     var events = window.UPCOMING_EVENTS || [];
@@ -119,8 +166,6 @@
       items = events;
     } else if (source === "seminars") {
       items = seminars;
-    } else if (source === "ajs") {
-      items = window.UPCOMING_AJS_SEMINARS || [];
     } else if (source === "seminars-all") {
       items = seminars.concat(window.UPCOMING_AJS_SEMINARS || []);
     } else {
@@ -145,8 +190,6 @@
     });
   }
 
-  // ── past (mirrors renderUpcoming exactly, reads PAST_* globals) ──────────
-
   function renderPast(container) {
     var source = container.getAttribute("data-past");
     var items = [];
@@ -155,8 +198,6 @@
       items = window.PAST_EVENTS || [];
     } else if (source === "seminars") {
       items = window.PAST_SEMINARS || [];
-    } else if (source === "ajs") {
-      items = window.PAST_AJS_SEMINARS || [];
     } else if (source === "ajs-all") {
       items = window.PAST_AJS_SEMINARS || [];
     } else {
@@ -176,21 +217,29 @@
       return;
     }
 
-    items.forEach(function (item) {
-      container.appendChild(createUpcomingCard(item));
-    });
+    if (source === "events") {
+      items.forEach(function (item) {
+        container.appendChild(createUpcomingCard(item));
+      });
+    } else {
+      var ul = document.createElement("ul");
+      items.forEach(function (item) {
+        ul.appendChild(createPastSeminarItem(item));
+      });
+      container.appendChild(ul);
 
-    if (source === "ajs-all") {
-      var note = document.createElement("p");
-      note.className = "event-meta";
-      var noteLink = document.createElement("a");
-      noteLink.href = "https://www.math.sissa.it/content/ajs-seminars";
-      noteLink.target = "_blank";
-      noteLink.rel = "noopener";
-      noteLink.textContent = "https://www.math.sissa.it/content/ajs-seminars";
-      note.appendChild(document.createTextNode("Older AJS seminars can be found at "));
-      note.appendChild(noteLink);
-      container.appendChild(note);
+      if (source === "ajs-all") {
+        var note = document.createElement("p");
+        note.className = "event-meta";
+        var noteLink = document.createElement("a");
+        noteLink.href = "https://www.math.sissa.it/content/ajs-seminars";
+        noteLink.target = "_blank";
+        noteLink.rel = "noopener";
+        noteLink.textContent = "https://www.math.sissa.it/content/ajs-seminars";
+        note.appendChild(document.createTextNode("Older AJS seminars can be found at "));
+        note.appendChild(noteLink);
+        container.appendChild(note);
+      }
     }
   }
 

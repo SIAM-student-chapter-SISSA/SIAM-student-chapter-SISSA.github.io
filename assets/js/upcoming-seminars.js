@@ -1,12 +1,16 @@
+// upcoming-seminars.js
+// --------------------
+// Manually maintained upcoming seminars.
+//
+// {
+//   day:        "DD",
+//   month:      "Mon",
+//   year:       "YYYY",
+//   title:      "Seminar title",
+//   speaker:    "First Last",
+//   university: "University name",
+//   website:    { href: "https://...", label: "Link label" },  // optional
+// }
+
 window.UPCOMING_SEMINARS = [
-  // {
-  //   day: "DD",
-  //   month: "MON",
-  //   title: "Seminar title",
-  //   meta: "Day DD/MM, HH:MM-HH:MM, room",
-  //   paragraphs: [
-  //     "Short seminar description.",
-  //     "Speaker and additional details."
-  //   ]
-  // }
 ];

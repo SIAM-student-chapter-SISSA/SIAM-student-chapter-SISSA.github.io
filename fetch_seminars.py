@@ -3,9 +3,9 @@
 fetch_seminars.py
 -----------------
 Fetches the AnJunSem calendar from researchseminars.org and writes two JS
-files in the seminar object shape used by the site:
+files whose objects match the shape used in upcoming-seminars.js exactly:
 
-  { day, month, title, speaker, university, website }
+  { day, month, title, meta, website }
 
 Usage:
   python fetch_seminars.py
@@ -13,9 +13,6 @@ Usage:
   python fetch_seminars.py --seminar AnJunSem \\
       --output-upcoming assets/js/upcoming-ajs-seminars.js \\
       --output-past     assets/js/past-ajs-seminars.js
-
-Requirements:
-  pip install icalendar   # optional but recommended; falls back to built-in parser
 """
 
 import argparse
@@ -32,6 +29,7 @@ try:
 except ImportError:
     USE_ICALENDAR = False
 
+DAYS   = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
           "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
@@ -61,10 +59,9 @@ def parse_with_icalendar(text):
         if c.name != "VEVENT":
             continue
         events.append({
-            "date":        _to_utc(c.get("DTSTART").dt),
-            "summary":     str(c.get("SUMMARY", "")),
-            "description": str(c.get("DESCRIPTION", "")),
-            "url":         str(c.get("URL", "")),
+            "date":    _to_utc(c.get("DTSTART").dt),
+            "summary": str(c.get("SUMMARY", "")),
+            "url":     str(c.get("URL", "")),
         })
     return events
 
@@ -73,13 +70,8 @@ def parse_raw(text):
     events = []
     for block in text.split("BEGIN:VEVENT")[1:]:
         def get(key):
-            # Collect first line + any folded continuation lines (start with space/tab)
-            m = re.search(rf"^{re.escape(key)}[^:]*:(.+(?:\n[ \t].+)*)", block, re.MULTILINE)
-            if not m:
-                return ""
-            # Unfold: join continuation lines, strip leading whitespace
-            raw = re.sub(r"\n[ \t]", "", m.group(1))
-            return raw.strip()
+            m = re.search(rf"^{re.escape(key)}[^:]*:(.+)", block, re.MULTILINE)
+            return m.group(1).strip() if m else ""
         raw = get("DTSTART")
         if not raw:
             continue
@@ -94,7 +86,7 @@ def parse_raw(text):
                 dt = dt.replace(tzinfo=timezone.utc)
         except (ValueError, IndexError):
             continue
-        events.append({"date": dt, "summary": get("SUMMARY"), "description": get("DESCRIPTION"), "url": get("URL")})
+        events.append({"date": dt, "summary": get("SUMMARY"), "url": get("URL")})
     return events
 
 
@@ -104,29 +96,29 @@ def parse_ics(text):
 
 # ── convert to JS object shape ────────────────────────────────────────────────
 
-def to_js_obj(ev, seminar_url):
+def to_js_item(ev, seminar_url):
     d = ev["date"]
-
-    # SUMMARY is "Speaker Name (University)" or "Speaker Name"
     summary = ev["summary"]
-    m = re.match(r"^(.+?)\s*\((.+?)\)\s*$", summary)
-    if m:
-        speaker, university = m.group(1).strip(), m.group(2).strip()
-    else:
-        speaker, university = summary.strip(), ""
 
-    # Title is in DESCRIPTION after "Title: <a href="...">...</a>"
-    desc = ev.get("description", "")
-    title_m = re.search(r"Title:\s*<a[^>]*>([^<]+)</a>", desc)
-    title = title_m.group(1).strip() if title_m else ""
+    # split "Speaker: Title" or keep as title only
+    idx = summary.find(": ")
+    if 0 < idx < 60:
+        speaker, title = summary[:idx].strip(), summary[idx + 2:].strip()
+    else:
+        speaker, title = "", summary.strip()
+
+    day_name = DAYS[d.weekday()]
+    hh = d.strftime("%H")
+    mm = d.strftime("%M")
+    meta = f"{day_name} {d.day:02d}/{d.month:02d}/{d.year}, {hh}:{mm} UTC"
+    if speaker:
+        meta += f" \u2014 {speaker}"
 
     return {
-        "day":          str(d.day).zfill(2),
-        "month":        MONTHS[d.month - 1],
-        "year":         str(d.year),
-        "title":        title or "(TBA)",
-        "speaker":      speaker,
-        "university":   university,
+        "day":   str(d.day).zfill(2),
+        "month": MONTHS[d.month - 1],
+        "title": title or "(TBA)",
+        "meta":  meta,
         "website_href": ev["url"] or seminar_url,
     }
 
@@ -136,27 +128,24 @@ def js_array(var_name, items, seminar_url):
         return f"window.{var_name} = [];\n"
     lines = [f"window.{var_name} = ["]
     for ev in items:
-        obj = to_js_obj(ev, seminar_url)
+        obj = to_js_item(ev, seminar_url)
         lines.append("  {")
-        lines.append(f"    day:        {json.dumps(obj['day'])},")
-        lines.append(f"    month:      {json.dumps(obj['month'])},")
-        lines.append(f"    year:       {json.dumps(obj['year'])},")
-        lines.append(f"    title:      {json.dumps(obj['title'])},")
-        lines.append(f"    speaker:    {json.dumps(obj['speaker'])},")
-        lines.append(f"    university: {json.dumps(obj['university'])},")
-        lines.append(f"    website:    {{ href: {json.dumps(obj['website_href'])}, label: \"researchseminars.org\" }},")
+        lines.append(f"    day: {json.dumps(obj['day'])},")
+        lines.append(f"    month: {json.dumps(obj['month'])},")
+        lines.append(f"    title: {json.dumps(obj['title'])},")
+        lines.append(f"    meta: {json.dumps(obj['meta'])},")
+        lines.append(f"    website: {{ href: {json.dumps(obj['website_href'])}, label: \"researchseminars.org\" }},")
         lines.append("  },")
     lines.append("];\n")
     return "\n".join(lines)
 
 
-def file_content(var_name, seminar_id, flag, items, seminar_url):
-    header = (
+def file_header(var_name, seminar_id, flag):
+    return (
         f"// {var_name.lower().replace('_', '-')}.js\n"
         f"// AUTO-GENERATED — do not edit by hand.\n"
         f"// Re-run: python fetch_seminars.py --seminar {seminar_id} {flag} <this file>\n\n"
     )
-    return header + js_array(var_name, items, seminar_url)
 
 
 # ── main ──────────────────────────────────────────────────────────────────────
@@ -165,8 +154,10 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--seminar", default="AnJunSem")
-    ap.add_argument("--output-upcoming", default=None)
-    ap.add_argument("--output-past",     default=None)
+    ap.add_argument("--output-upcoming", default=None,
+                    help="Write upcoming array to this file (default: stdout)")
+    ap.add_argument("--output-past", default=None,
+                    help="Write past array to this file (default: stdout)")
     args = ap.parse_args()
 
     print(f"Fetching ICS for '{args.seminar}'…", file=sys.stderr)
@@ -181,8 +172,10 @@ def main():
     past     = sorted([e for e in events if e["date"] <  now], key=lambda e: e["date"], reverse=True)
     print(f"  {len(upcoming)} upcoming, {len(past)} past.", file=sys.stderr)
 
-    upcoming_js = file_content("UPCOMING_AJS_SEMINARS", args.seminar, "--output-upcoming", upcoming, seminar_url)
-    past_js     = file_content("PAST_AJS_SEMINARS",     args.seminar, "--output-past",     past,     seminar_url)
+    upcoming_js = (file_header("UPCOMING_AJS_SEMINARS", args.seminar, "--output-upcoming")
+                   + js_array("UPCOMING_AJS_SEMINARS", upcoming, seminar_url))
+    past_js     = (file_header("PAST_AJS_SEMINARS", args.seminar, "--output-past")
+                   + js_array("PAST_AJS_SEMINARS", past, seminar_url))
 
     if args.output_upcoming:
         open(args.output_upcoming, "w", encoding="utf-8").write(upcoming_js)
