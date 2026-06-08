@@ -5,7 +5,7 @@ window.UPCOMING_EVENTS = [
     title: "SISSA Women in Mathematics",
     meta: "Friday 12/06, 14:00-17:00, SISSA, big meeting room",
     online: {
-      label: "Participate online",
+      label: "Join online",
       href: "https://sissa-it.zoom.us/j/81527884331?pwd=0jpWaO9hsjfnZuovnC7FanRHncba5y.1"
     },
     paragraphs: [
