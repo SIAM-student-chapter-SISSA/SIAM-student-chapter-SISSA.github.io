@@ -170,17 +170,8 @@ h4 {
 }
 
 .page-links {
-  background: #f7f9fc;
-  max-width: none;
-  padding-top: 0;
+  margin-top: 48px;
   text-align: left;
-}
-
-.page-links > h3,
-.page-links > .page-link-grid {
-  max-width: 1050px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .page-link-grid {
@@ -212,6 +203,10 @@ h4 {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
+.page-link-card h4 {
+  margin: 0;
+}
+
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -237,7 +232,8 @@ h4 {
 }
 
 .events > h3,
-.events > .event-card {
+.events > .event-card,
+.events > .page-links {
   max-width: 1050px;
   margin-left: auto;
   margin-right: auto;
