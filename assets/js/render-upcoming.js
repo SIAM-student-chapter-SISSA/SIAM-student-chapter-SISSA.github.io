@@ -46,6 +46,33 @@
       content.appendChild(createTextElement("p", paragraph));
     });
 
+    if (item.abstracts && item.abstracts.length) {
+      var abstracts = document.createElement("div");
+      abstracts.className = "event-abstracts";
+      abstracts.appendChild(createTextElement("h5", "Abstracts"));
+
+      item.abstracts.forEach(function (abstract) {
+        var abstractBlock = document.createElement("div");
+        abstractBlock.className = "event-abstract";
+
+        if (abstract.speaker) {
+          abstractBlock.appendChild(createTextElement("p", abstract.speaker, "event-abstract-speaker"));
+        }
+
+        if (abstract.title) {
+          abstractBlock.appendChild(createTextElement("h6", abstract.title));
+        }
+
+        if (abstract.text) {
+          abstractBlock.appendChild(createTextElement("p", abstract.text));
+        }
+
+        abstracts.appendChild(abstractBlock);
+      });
+
+      content.appendChild(abstracts);
+    }
+
     article.appendChild(content);
 
     if (item.flyer && item.flyer.image) {

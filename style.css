@@ -327,6 +327,34 @@ h4 {
   color: #005eb8;
 }
 
+.event-abstracts {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid #e4e4e4;
+}
+
+.event-abstracts h5 {
+  margin: 0 0 18px;
+  color: #003b73;
+  font-size: 1.1rem;
+}
+
+.event-abstract {
+  margin-top: 18px;
+}
+
+.event-abstract-speaker {
+  margin-bottom: 4px;
+  color: #666;
+  font-weight: 700;
+}
+
+.event-abstract h6 {
+  margin: 0 0 10px;
+  color: #003b73;
+  font-size: 1rem;
+}
+
 .event-content {
   padding: 48px;
   border-right: 1px solid #e4e4e4;
