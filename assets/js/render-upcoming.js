@@ -119,6 +119,10 @@
       items = events;
     } else if (source === "seminars") {
       items = seminars;
+    } else if (source === "ajs") {
+      items = window.UPCOMING_AJS_SEMINARS || [];
+    } else if (source === "seminars-all") {
+      items = seminars.concat(window.UPCOMING_AJS_SEMINARS || []);
     } else {
       items = events.concat(seminars);
     }
@@ -126,10 +130,13 @@
     container.innerHTML = "";
 
     if (!items.length) {
-      var empty = document.createElement("p");
-      empty.className = "empty-state";
-      empty.textContent = container.getAttribute("data-empty") || "To add.";
-      container.appendChild(empty);
+      var emptyText = container.getAttribute("data-empty");
+      if (emptyText) {
+        var empty = document.createElement("p");
+        empty.className = "empty-state";
+        empty.textContent = emptyText;
+        container.appendChild(empty);
+      }
       return;
     }
 
@@ -138,5 +145,55 @@
     });
   }
 
+  // ── past (mirrors renderUpcoming exactly, reads PAST_* globals) ──────────
+
+  function renderPast(container) {
+    var source = container.getAttribute("data-past");
+    var items = [];
+
+    if (source === "events") {
+      items = window.PAST_EVENTS || [];
+    } else if (source === "seminars") {
+      items = window.PAST_SEMINARS || [];
+    } else if (source === "ajs") {
+      items = window.PAST_AJS_SEMINARS || [];
+    } else if (source === "ajs-all") {
+      items = window.PAST_AJS_SEMINARS || [];
+    } else {
+      items = (window.PAST_EVENTS || []).concat(window.PAST_SEMINARS || []);
+    }
+
+    container.innerHTML = "";
+
+    if (!items.length) {
+      var emptyText = container.getAttribute("data-empty");
+      if (emptyText) {
+        var empty = document.createElement("p");
+        empty.className = "empty-state";
+        empty.textContent = emptyText;
+        container.appendChild(empty);
+      }
+      return;
+    }
+
+    items.forEach(function (item) {
+      container.appendChild(createUpcomingCard(item));
+    });
+
+    if (source === "ajs-all") {
+      var note = document.createElement("p");
+      note.className = "event-meta";
+      var noteLink = document.createElement("a");
+      noteLink.href = "https://www.math.sissa.it/content/ajs-seminars";
+      noteLink.target = "_blank";
+      noteLink.rel = "noopener";
+      noteLink.textContent = "https://www.math.sissa.it/content/ajs-seminars";
+      note.appendChild(document.createTextNode("Older AJS seminars can be found at "));
+      note.appendChild(noteLink);
+      container.appendChild(note);
+    }
+  }
+
   document.querySelectorAll("[data-upcoming]").forEach(renderUpcoming);
+  document.querySelectorAll("[data-past]").forEach(renderPast);
 })();

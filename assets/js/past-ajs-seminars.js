@@ -1,0 +1,186 @@
+// past-ajs-seminars.js
+// --------------------
+// AUTO-GENERATED — do not edit by hand.
+// Re-run to refresh:
+//   python fetch_seminars.py --seminar AnJunSem --output assets/js/past-ajs-seminars.js
+//
+// Object shape mirrors upcoming-seminars.js so the same card renderer works.
+
+window.PAST_AJS_SEMINARS = [
+  {
+    day: "29",
+    month: "May",
+    title: "Beatrice Balzarotti (Università Statale di Milano)",
+    meta: "Fri 29/05/2026, 12:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "27",
+    month: "May",
+    title: "Simone Brivio (Politecnico di Milano)",
+    meta: "Wed 27/05/2026, 12:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "22",
+    month: "May",
+    title: "Roberto Marchello (SISSA)",
+    meta: "Fri 22/05/2026, 12:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "15",
+    month: "May",
+    title: "Tolibjon Ismoilov (SISSA & ICTP)",
+    meta: "Fri 15/05/2026, 12:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "24",
+    month: "Apr",
+    title: "Riccardo Berforini D\u2019Aquino (SISSA)",
+    meta: "Fri 24/04/2026, 12:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "10",
+    month: "Apr",
+    title: "Lamberto Tresoldi (\u00c9cole Polytechnique)",
+    meta: "Fri 10/04/2026, 12:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "27",
+    month: "Mar",
+    title: "Marco Picerni (SISSA)",
+    meta: "Fri 27/03/2026, 13:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "06",
+    month: "Mar",
+    title: "Dario Coscia",
+    meta: "Fri 06/03/2026, 13:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "27",
+    month: "Feb",
+    title: "Alec Jacopo Almo Schiavoni Piazza (SISSA)",
+    meta: "Fri 27/02/2026, 13:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "20",
+    month: "Feb",
+    title: "Chiara Lonati (Politecnico di Torino)",
+    meta: "Fri 20/02/2026, 13:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "17",
+    month: "Feb",
+    title: "Giacomo Landi (TU Munich)",
+    meta: "Tue 17/02/2026, 13:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "13",
+    month: "Feb",
+    title: "Tommaso Barbieri (SISSA)",
+    meta: "Fri 13/02/2026, 13:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "06",
+    month: "Feb",
+    title: "Gabriele Codega (SISSA)",
+    meta: "Fri 06/02/2026, 13:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "30",
+    month: "Jan",
+    title: "Adriano Prade (Ecole Polytechnique)",
+    meta: "Fri 30/01/2026, 13:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "23",
+    month: "Jan",
+    title: "Guglielmo Padula (SISSA)",
+    meta: "Fri 23/01/2026, 13:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "12",
+    month: "Dec",
+    title: "Nali Zhang (SISSA)",
+    meta: "Fri 12/12/2025, 14:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "11",
+    month: "Dec",
+    title: "Chiara Trifone (SISSA)",
+    meta: "Thu 11/12/2025, 15:15 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "05",
+    month: "Dec",
+    title: "Elvin Babayev (SISSA)",
+    meta: "Fri 05/12/2025, 13:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "28",
+    month: "Nov",
+    title: "Fabrizio Caragiulo (SISSA)",
+    meta: "Fri 28/11/2025, 13:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "21",
+    month: "Nov",
+    title: "Gaia Marsich (SISSA)",
+    meta: "Fri 21/11/2025, 13:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "14",
+    month: "Nov",
+    title: "Nicola Clinco (SISSA)",
+    meta: "Fri 14/11/2025, 13:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "12",
+    month: "Nov",
+    title: "Rahul Halder (SISSA)",
+    meta: "Wed 12/11/2025, 13:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "05",
+    month: "Nov",
+    title: "Ariel S. Boiardi (SISSA)",
+    meta: "Wed 05/11/2025, 13:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "17",
+    month: "Oct",
+    title: "Davide Donati (SISSA)",
+    meta: "Fri 17/10/2025, 12:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
+    day: "02",
+    month: "Oct",
+    title: "Caterina Gallegati (University of Siena)",
+    meta: "Thu 02/10/2025, 14:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+];
+
