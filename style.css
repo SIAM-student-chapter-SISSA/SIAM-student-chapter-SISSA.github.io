@@ -188,9 +188,8 @@ h4 {
   color: #003b73;
   text-decoration: none;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   min-height: 72px;
   padding: 14px 28px;
   font-size: 1.8rem;
@@ -203,10 +202,12 @@ h4 {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
-.page-link-card span {
+.page-link-card span,
+.page-link-card h4 {
   display: block;
   margin: 0;
-  line-height: 1.1;
+  line-height: 1;
+  color: #003b73;
 }
 
 .cards {
