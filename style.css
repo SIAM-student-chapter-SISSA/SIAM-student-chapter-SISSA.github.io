@@ -202,11 +202,17 @@ h4 {
 
 .event-card {
   display: grid;
-  grid-template-columns: 110px minmax(0, 1fr) minmax(220px, 280px);
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
   gap: 26px;
   padding: 28px;
   margin-top: 24px;
   background: white;
+}
+
+.event-announcement {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 26px;
 }
 
 .event-date {
@@ -303,6 +309,10 @@ footer {
   .cards,
   .people-grid,
   .event-card {
+    grid-template-columns: 1fr;
+  }
+
+  .event-announcement {
     grid-template-columns: 1fr;
   }
 
