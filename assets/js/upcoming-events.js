@@ -4,6 +4,10 @@ window.UPCOMING_EVENTS = [
     month: "JUN",
     title: "SISSA Women in Mathematics",
     meta: "Friday 12/06, 14:00-17:00, SISSA, big meeting room",
+    website: {
+      label: "Event website",
+      href: "https://www.math.sissa.it/seminar/sissa-women-mathematics-2026"
+    },
     online: {
       label: "Join online",
       href: "https://sissa-it.zoom.us/j/81527884331?pwd=0jpWaO9hsjfnZuovnC7FanRHncba5y.1"

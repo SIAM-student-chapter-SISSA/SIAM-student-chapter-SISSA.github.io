@@ -318,12 +318,12 @@ h4 {
   font-weight: 600;
 }
 
-.event-online {
+.event-link {
   margin-top: -8px;
   font-weight: 700;
 }
 
-.event-online a {
+.event-link a {
   color: #005eb8;
 }
 

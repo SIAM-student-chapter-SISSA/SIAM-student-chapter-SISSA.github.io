@@ -28,9 +28,23 @@
       content.appendChild(createTextElement("p", item.meta, "event-meta"));
     }
 
+    if (item.website && item.website.href) {
+      var website = document.createElement("p");
+      website.className = "event-link";
+
+      var websiteLink = document.createElement("a");
+      websiteLink.href = item.website.href;
+      websiteLink.target = "_blank";
+      websiteLink.rel = "noopener";
+      websiteLink.textContent = item.website.label || "Event website";
+
+      website.appendChild(websiteLink);
+      content.appendChild(website);
+    }
+
     if (item.online && item.online.href) {
       var online = document.createElement("p");
-      online.className = "event-online";
+      online.className = "event-link";
 
       var onlineLink = document.createElement("a");
       onlineLink.href = item.online.href;
