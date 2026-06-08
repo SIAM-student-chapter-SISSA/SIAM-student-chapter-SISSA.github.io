@@ -193,7 +193,7 @@ h4 {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 150px;
+  min-height: 100px;
   padding: 28px;
   font-size: 1.8rem;
   font-weight: 700;
