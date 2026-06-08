@@ -287,7 +287,8 @@ h4 {
 }
 
 .event-flyer {
-  display: block;
+  display: flex;
+  align-items: center;
   padding: 16px;
   cursor: pointer;
 }
