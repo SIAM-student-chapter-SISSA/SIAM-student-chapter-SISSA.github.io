@@ -1,9 +1,31 @@
+// upcoming-events.js
+// ------------------
+// Manually maintained upcoming events.
+//
+// Event object shape:
+// {
+//   day:        "DD",
+//   month:      "Mon",
+//   year:       "YYYY",
+//   title:      "Event title",
+//   speaker:    "First Last",                                        // optional
+//   meta:       "Day DD/MM, HH:MM-HH:MM, room",                     // optional
+//   website:    { href: "https://...", label: "Event website" },     // optional
+//   online:     { href: "https://...", label: "Participate online" }, // optional
+//   paragraphs: ["Short description.", "Further details."],          // optional
+//   abstracts:  [                                                     // optional
+//     { speaker: "Name", title: "Talk title", text: "Abstract." }
+//   ],
+//   flyer:      { image: "assets/...", href: "assets/...", alt: "", label: "Open flyer" }, // optional
+// }
+
 window.UPCOMING_EVENTS = [
   {
     day: "12",
     month: "JUN",
-    title: "SISSA Women in Mathematics",
+    title: "SISSA Women in Mathematics 2026",
     meta: "Friday 12/06, 14:00-17:00, SISSA, big meeting room",
+    speaker: "Sara Daneri, Harini Desiraju, Giovanna Marcelli",
     website: {
       label: "Event website",
       href: "https://www.math.sissa.it/seminar/sissa-women-mathematics-2026"
