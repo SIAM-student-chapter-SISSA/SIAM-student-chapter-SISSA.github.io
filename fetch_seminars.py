@@ -5,7 +5,7 @@ fetch_seminars.py
 Fetches the AnJunSem calendar from researchseminars.org and writes two JS
 files whose objects match the shape used in upcoming-seminars.js exactly:
 
-  { day, month, title, meta, website }
+  { day, month, title, speaker, university, meta, website }
 
 Usage:
   python fetch_seminars.py
@@ -96,28 +96,41 @@ def parse_ics(text):
 
 # ── convert to JS object shape ────────────────────────────────────────────────
 
+def split_speaker_university(text):
+    m = re.match(r"^(.+?)\s*\(([^()]+)\)\s*$", text.strip())
+    if not m:
+        return text.strip(), ""
+    return m.group(1).strip(), m.group(2).strip()
+
+
 def to_js_item(ev, seminar_url):
     d = ev["date"]
     summary = ev["summary"]
+    speaker = ""
+    university = ""
 
-    # split "Speaker: Title" or keep as title only
+    # split "Speaker (University): Title", "Speaker: Title", or keep as title only
     idx = summary.find(": ")
     if 0 < idx < 60:
         speaker, title = summary[:idx].strip(), summary[idx + 2:].strip()
+        speaker, university = split_speaker_university(speaker)
     else:
-        speaker, title = "", summary.strip()
+        title = summary.strip()
+        if "(" in title and title.endswith(")"):
+            speaker, university = split_speaker_university(title)
+            title = "AJS Seminar"
 
     day_name = DAYS[d.weekday()]
     hh = d.strftime("%H")
     mm = d.strftime("%M")
     meta = f"{day_name} {d.day:02d}/{d.month:02d}/{d.year}, {hh}:{mm} UTC"
-    if speaker:
-        meta += f" \u2014 {speaker}"
 
     return {
         "day":   str(d.day).zfill(2),
         "month": MONTHS[d.month - 1],
         "title": title or "(TBA)",
+        "speaker": speaker,
+        "university": university,
         "meta":  meta,
         "website_href": ev["url"] or seminar_url,
     }
@@ -133,6 +146,10 @@ def js_array(var_name, items, seminar_url):
         lines.append(f"    day: {json.dumps(obj['day'])},")
         lines.append(f"    month: {json.dumps(obj['month'])},")
         lines.append(f"    title: {json.dumps(obj['title'])},")
+        if obj["speaker"]:
+            lines.append(f"    speaker: {json.dumps(obj['speaker'])},")
+        if obj["university"]:
+            lines.append(f"    university: {json.dumps(obj['university'])},")
         lines.append(f"    meta: {json.dumps(obj['meta'])},")
         lines.append(f"    website: {{ href: {json.dumps(obj['website_href'])}, label: \"researchseminars.org\" }},")
         lines.append("  },")

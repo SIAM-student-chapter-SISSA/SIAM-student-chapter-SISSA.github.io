@@ -10,7 +10,45 @@
     return element;
   }
 
-  function createUpcomingCard(item) {
+  function parseSpeakerAndUniversity(text) {
+    var match = (text || "").match(/^(.+?)\s*\(([^()]+)\)\s*$/);
+
+    if (!match) {
+      return null;
+    }
+
+    return {
+      speaker: match[1].trim(),
+      university: match[2].trim(),
+    };
+  }
+
+  function createSeminarDetails(item) {
+    var title = item.title || "";
+    var speaker = item.speaker || "";
+    var university = item.university || item.affiliation || "";
+    var parsed = null;
+
+    if (!speaker && !university) {
+      parsed = parseSpeakerAndUniversity(title);
+    }
+
+    if (parsed) {
+      speaker = parsed.speaker;
+      university = parsed.university;
+      title = item.seminarTitle || item.talkTitle || "AJS Seminar";
+    }
+
+    return {
+      title: title,
+      speaker: speaker,
+      university: university,
+    };
+  }
+
+  function createUpcomingCard(item, type) {
+    var isSeminar = type === "seminar";
+    var seminarDetails = isSeminar ? createSeminarDetails(item) : null;
     var article = document.createElement("article");
     article.className = "event-card";
 
@@ -22,9 +60,27 @@
 
     var content = document.createElement("div");
     content.className = "event-content";
-    content.appendChild(createTextElement("h4", item.title || ""));
+    content.appendChild(createTextElement("h4", isSeminar ? seminarDetails.title : (item.title || "")));
 
-    if (item.speaker) {
+    if (isSeminar && (seminarDetails.speaker || seminarDetails.university)) {
+      var seminarMeta = document.createElement("p");
+      seminarMeta.className = "seminar-speaker";
+
+      if (seminarDetails.speaker) {
+        seminarMeta.appendChild(createTextElement("strong", seminarDetails.speaker));
+      }
+
+      if (seminarDetails.university) {
+        if (seminarDetails.speaker) {
+          seminarMeta.appendChild(document.createTextNode(", "));
+        }
+        seminarMeta.appendChild(document.createTextNode(seminarDetails.university));
+      }
+
+      content.appendChild(seminarMeta);
+    }
+
+    if (!isSeminar && item.speaker) {
       content.appendChild(createTextElement("p", item.speaker, "event-meta"));
     }
 
@@ -40,7 +96,7 @@
       websiteLink.href = item.website.href;
       websiteLink.target = "_blank";
       websiteLink.rel = "noopener";
-      websiteLink.textContent = item.website.label || "Event website";
+      websiteLink.textContent = isSeminar ? "More info" : (item.website.label || "Event website");
 
       website.appendChild(websiteLink);
       content.appendChild(website);
@@ -160,14 +216,24 @@
     var ajsSeminars = window.UPCOMING_AJS_SEMINARS || [];
     var items = [];
 
+    function tagItems(sourceItems, type) {
+      return sourceItems.map(function (item) {
+        return {
+          item: item,
+          type: type,
+        };
+      });
+    }
+
     if (source === "events") {
-      items = events;
+      items = tagItems(events, "event");
     } else if (source === "seminars") {
-      items = seminars;
+      items = tagItems(seminars, "seminar");
     } else if (source === "seminars-all") {
-      items = seminars.concat(ajsSeminars);
+      items = tagItems(seminars, "seminar").concat(tagItems(ajsSeminars, "seminar"));
     } else {
-      items = events.concat(seminars, ajsSeminars);
+      items = tagItems(events, "event")
+        .concat(tagItems(seminars, "seminar"), tagItems(ajsSeminars, "seminar"));
     }
 
     container.innerHTML = "";
@@ -183,8 +249,8 @@
       return;
     }
 
-    items.forEach(function (item) {
-      container.appendChild(createUpcomingCard(item));
+    items.forEach(function (entry) {
+      container.appendChild(createUpcomingCard(entry.item, entry.type));
     });
   }
 
