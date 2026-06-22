@@ -23,7 +23,7 @@ body {
 }
 
 .header-inner {
-  max-width: 1180px;
+  max-width: 1360px;
   margin: 0 auto;
   padding: 16px 60px;
   display: flex;
@@ -116,7 +116,7 @@ body {
 }
 
 .section {
-  max-width: 1180px;
+  max-width: 1360px;
   margin: 0 auto;
   padding: 64px 60px;
 }
@@ -255,7 +255,7 @@ h4 {
 .events > .event-card,
 .events > .upcoming-list,
 .events > .page-links {
-  max-width: 1180px;
+  max-width: 1360px;
   margin-left: auto;
   margin-right: auto;
 }
