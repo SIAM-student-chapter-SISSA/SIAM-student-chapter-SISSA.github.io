@@ -80,8 +80,11 @@ window.PAST_EVENTS = [
     title: "SIAM Chapter Colloquia (2021)",
   },
   {
+    day: "12",
+    month: "May",
     year: "2021",
     title: "SISSA Women in Mathematics (2021)",
+    speaker: "Chiara Rigoni, Ada Boralevi",
     website: {
       label: "Event website",
       href: "https://www.math.sissa.it/seminar/sissa-women-mathematics-2021"
@@ -160,7 +163,6 @@ window.PAST_EVENTS = [
     month: "May",
     year: "2016",
     title: "SIAM Chapter Colloquia (2016)",
-    speaker: "Guido De Philippis, Antonio Lerario",
     website: {
       label: "Event website",
       href: "https://www.math.sissa.it/seminar/siam-chapter-colloquia"
