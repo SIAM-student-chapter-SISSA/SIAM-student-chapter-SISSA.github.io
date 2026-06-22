@@ -7,6 +7,15 @@
 
 window.PAST_AJS_SEMINARS = [
   {
+    day:        "12",
+    month:      "Jun",
+    year:       "2026",
+    title:      "A mixed\u2013hybrid flux\u2013preserving element for the coupled problem of fi\rnite-strain poroelasticity",
+    speaker:    "Simona Lo Franco",
+    university: "University of Modena and Reggio Emilia",
+    website:    { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
     day:        "29",
     month:      "May",
     year:       "2026",
@@ -232,5 +241,4 @@ window.PAST_AJS_SEMINARS = [
     website:    { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
   },
 ];
-
 

@@ -17,10 +17,7 @@
     var date = document.createElement("div");
     date.className = "event-date";
     date.appendChild(createTextElement("span", item.day || "", "day"));
-    date.appendChild(createTextElement("span", item.month || "", "month"));
-    if (item.year) {
-      date.appendChild(createTextElement("span", item.year, "year"));
-    }
+    date.appendChild(createTextElement("span", (item.month || "").toUpperCase(), "month"));
     article.appendChild(date);
 
     var content = document.createElement("div");
@@ -160,6 +157,7 @@
     var source = container.getAttribute("data-upcoming");
     var events = window.UPCOMING_EVENTS || [];
     var seminars = window.UPCOMING_SEMINARS || [];
+    var ajsSeminars = window.UPCOMING_AJS_SEMINARS || [];
     var items = [];
 
     if (source === "events") {
@@ -167,9 +165,9 @@
     } else if (source === "seminars") {
       items = seminars;
     } else if (source === "seminars-all") {
-      items = seminars.concat(window.UPCOMING_AJS_SEMINARS || []);
+      items = seminars.concat(ajsSeminars);
     } else {
-      items = events.concat(seminars);
+      items = events.concat(seminars, ajsSeminars);
     }
 
     container.innerHTML = "";

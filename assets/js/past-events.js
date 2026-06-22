@@ -1,6 +1,6 @@
 // past-events.js
 // ------------------
-// Manually maintained upcoming events.
+// Manually maintained past events.
 //
 // Event object shape:
 // {
@@ -20,6 +20,17 @@
 // }
 
 window.PAST_EVENTS = [
+  {
+    day: "12",
+    month: "Jun",
+    year: "2026",
+    title: "SISSA Women in Mathematics (2026)",
+    speaker: "Sara Daneri, Harini Desiraju, Giovanna Marcelli",
+    website: {
+      label: "Event website",
+      href: "https://www.math.sissa.it/seminar/sissa-women-mathematics-2026"
+    },
+  },
   {
     day: "14",
     month: "Apr",
