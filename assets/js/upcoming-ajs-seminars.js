@@ -5,5 +5,12 @@
 //   python fetch_seminars.py --seminar AnJunSem --output-upcoming assets/js/upcoming-ajs-seminars.js
 
 window.UPCOMING_AJS_SEMINARS = [
+  {
+    day: "26",
+    month: "Jun",
+    title: "Valentina Pederzoli (Politecnico di Milano)",
+    meta: "Fri 26/06/2026, 12:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
 ];
 
