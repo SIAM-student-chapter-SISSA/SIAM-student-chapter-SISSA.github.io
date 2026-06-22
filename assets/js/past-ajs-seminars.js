@@ -72,7 +72,7 @@ window.PAST_AJS_SEMINARS = [
   {
     day: "06",
     month: "Mar",
-    title: "Dario Coscia",
+    title: "Dario Coscia (SISSA)",
     meta: "Fri 06/03/2026, 13:00 UTC",
     website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
   },
