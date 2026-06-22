@@ -171,6 +171,20 @@
 
   function createPastSeminarItem(item) {
     var li = document.createElement("li");
+    var monthNames = {
+      Jan: "January",
+      Feb: "February",
+      Mar: "March",
+      Apr: "April",
+      May: "May",
+      Jun: "June",
+      Jul: "July",
+      Aug: "August",
+      Sep: "September",
+      Oct: "October",
+      Nov: "November",
+      Dec: "December",
+    };
 
     // Title — bold, clickable if website available
     var titleEl = document.createElement("strong");
@@ -201,8 +215,7 @@
 
     // Date
     if (item.day && item.month) {
-      var dateStr = item.day + " " + item.month;
-      if (item.year) { dateStr += " " + item.year; }
+      var dateStr = item.day + " " + (monthNames[item.month] || item.month);
       li.appendChild(document.createTextNode(", " + dateStr));
     }
 
