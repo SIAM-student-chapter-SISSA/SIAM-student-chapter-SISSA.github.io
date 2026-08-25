@@ -83,19 +83,16 @@ body {
 .hero {
   min-height: 430px;
   background:
-    linear-gradient(rgba(0, 40, 80, 0.55), rgba(0, 40, 80, 0.55)),
-    url("assets/images/hero.jpg");
+    linear-gradient(rgba(0, 40, 80, 0.68), rgba(0, 40, 80, 0.68)),
+    url("img/sissa.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: center 20%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: white;
 }
-
-/* Se non hai ancora un'immagine hero.jpg, il sito funziona comunque.
-   Puoi caricarla poi in assets/images/hero.jpg */
 
 .hero-overlay {
   padding: 40px 24px;

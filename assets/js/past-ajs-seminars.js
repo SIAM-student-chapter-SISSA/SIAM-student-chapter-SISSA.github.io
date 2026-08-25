@@ -7,6 +7,13 @@
 
 window.PAST_AJS_SEMINARS = [
   {
+    day: "26",
+    month: "Jun",
+    title: "Valentina Pederzoli (Politecnico di Milano)",
+    meta: "Fri 26/06/2026, 14:00 UTC",
+    website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
     day: "19",
     month: "Jun",
     title: "Jan Zavodnik (University of Ljubljana)",
@@ -196,4 +203,3 @@ window.PAST_AJS_SEMINARS = [
     website: { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
   },
 ];
-
