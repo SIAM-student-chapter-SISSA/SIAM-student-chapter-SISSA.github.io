@@ -7,6 +7,15 @@
 
 window.PAST_AJS_SEMINARS = [
   {
+    day:        "21",
+    month:      "Sep",
+    year:       "2026",
+    title:      "Are neural networks a manifold? A work-in-progress answer for shallow tanh networks",
+    speaker:    "Ivan Bioli",
+    university: "University of Pavia",
+    website:    { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
     day: "26",
     month: "Jun",
     title: "Valentina Pederzoli (Politecnico di Milano)",
