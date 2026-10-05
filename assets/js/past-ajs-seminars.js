@@ -4,6 +4,15 @@
 
 window.PAST_AJS_SEMINARS = [
   {
+    day:        "02",
+    month:      "Oct",
+    year:       "2026",
+    title:      "Active subspaces for parametric PDEs: Approximation, sampling, and multilevel computation",
+    speaker:    "Matteo Raviola",
+    university: "EPFL",
+    website:    { href: "https://researchseminars.org/seminar/AnJunSem", label: "researchseminars.org" },
+  },
+  {
     day:        "21",
     month:      "Sep",
     year:       "2026",
