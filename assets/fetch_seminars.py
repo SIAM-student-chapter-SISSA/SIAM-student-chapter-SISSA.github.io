@@ -11,6 +11,7 @@ Usage:
   python fetch_seminars.py
   python fetch_seminars.py --seminar AnJunSem
   python fetch_seminars.py --seminar AnJunSem \\
+      --academic-year 2026 \\
       --output-upcoming assets/js/upcoming-ajs-seminars.js \\
       --output-past     assets/js/past-ajs-seminars.js
 
@@ -165,6 +166,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--seminar", default="AnJunSem")
+    ap.add_argument("--academic-year", default=None, type=int,
+                    help="Type 2026 for a.y. 2026/2027")
     ap.add_argument("--output-upcoming", default=None)
     ap.add_argument("--output-past",     default=None)
     args = ap.parse_args()
@@ -176,6 +179,13 @@ def main():
 
     seminar_url = f"https://researchseminars.org/seminar/{args.seminar}"
     now = datetime.now(tz=timezone.utc)
+
+    if args.academic_year:
+        start_ay = datetime(args.academic_year, 9, 1, tzinfo=timezone.utc)
+        end_ay = datetime(args.academic_year + 1, 9, 1, tzinfo=timezone.utc)
+        events = [e for e in events if start_ay <= e["date"] < end_ay]
+    else:
+        args.academic_year = now.year if now.month >= 9 else now.year - 1
 
     upcoming = sorted([e for e in events if e["date"] >= now], key=lambda e: e["date"])
     past     = sorted([e for e in events if e["date"] <  now], key=lambda e: e["date"], reverse=True)
