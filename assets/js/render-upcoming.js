@@ -304,10 +304,10 @@
       var note = document.createElement("p");
       note.className = "event-meta";
       var noteLink = document.createElement("a");
-      noteLink.href = "https://www.math.sissa.it/content/ajs-seminars";
+      noteLink.href = "https://researchseminars.org/seminar/AnJunSem";
       noteLink.target = "_blank";
       noteLink.rel = "noopener";
-      noteLink.textContent = "https://www.math.sissa.it/content/ajs-seminars";
+      noteLink.textContent = "https://researchseminars.org/seminar/AnJunSem";
       note.appendChild(document.createTextNode("Older AJS seminars can be found at "));
       note.appendChild(noteLink);
       container.appendChild(note);
